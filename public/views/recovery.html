@@ -1,0 +1,27 @@
+<form novalidate role="form" name="recoveryForm" ng-submit="submit()">
+    <div class="form-group has-feedback"
+         ng-class="{'has-success':recoveryForm.email.$valid && recoveryForm.email.$dirty,'has-error':recoveryForm.email.$invalid && recoveryForm.email.$dirty}">
+
+        <label class="control-label" for="email" ng-bind="SUAINTERNATIONALIZATION['00021']"></label>
+        <input name="email" ng-pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" ng-minlength="3" ng-maxlength="254"
+               ng-model="recovery.email" type="email" class="form-control" id="email" required>
+
+        <span ng-show="recoveryForm.email.$valid && recoveryForm.email.$dirty"
+              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="recoveryForm.email.$invalid && recoveryForm.email.$dirty"
+              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+
+        <div ng-if="recoveryForm.email.$dirty" ng-messages="recoveryForm.email.$error" class="help-block">
+            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+            <span ng-message="pattern"><span ng-bind="SUATEXTS['00007']"></span></span>
+            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+        </div>
+    </div>
+    <div class="form-group" ng-if="recovery.enableRecaptcha">
+        <recaptcha></recaptcha>
+    </div>
+    <button type="submit" ng-disabled="recoveryForm.$invalid" ng-bind="SUAINTERNATIONALIZATION['00056']"></button>
+
+</form>

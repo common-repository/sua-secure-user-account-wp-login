@@ -1,0 +1,56 @@
+<form ng-submit="submit()" novalidate role="form" name="editPinCodeForm">
+
+    <div class="form-group has-feedback"
+         ng-class="{'has-success':editPinCodeForm.pinCode.$valid && editPinCodeForm.pinCode.$dirty,'has-error':editPinCodeForm.pinCode.$invalid && editPinCodeForm.pinCode.$dirty}">
+
+        <label class="control-label" for="pinCode" ng-bind="SUAINTERNATIONALIZATION['00032']"></label>
+        <input name="pinCode" ng-pattern="/^[0-9]{4}$/" ng-minlength="4" ng-maxlength="4" maxlength="4"
+               ng-model="editPinCode.pinCode" type="password" class="form-control" id="pinCode" required>
+
+        <span ng-show="editPinCodeForm.pinCode.$valid && editPinCodeForm.pinCode.$dirty"
+              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="editPinCodeForm.pinCode.$invalid && editPinCodeForm.pinCode.$dirty"
+              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+        <div ng-if="editPinCodeForm.pinCode.$dirty" ng-messages="editPinCodeForm.pinCode.$error" class="help-block">
+            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+            <span ng-message="pattern"><span ng-bind="SUATEXTS['00079']"></span></span>
+            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+        </div>
+    </div>
+
+    <div class="form-group has-feedback"
+         ng-class="{'has-success':editPinCodeForm.password.$valid && editPinCodeForm.password.$dirty,'has-error':editPinCodeForm.password.$invalid && editPinCodeForm.password.$dirty}">
+
+        <label class="control-label" for="password" ng-bind="SUAINTERNATIONALIZATION['00012']"></label>
+        <input name="password" digit uppercase-character special-character lowercase-character identical-characters
+               ng-minlength="10" ng-maxlength="128" ng-model="editPinCode.password" type="password" class="form-control"
+               id="password" required>
+
+        <span ng-show="editPinCodeForm.password.$valid && editPinCodeForm.password.$dirty"
+              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="editPinCodeForm.password.$invalid && editPinCodeForm.password.$dirty"
+              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+
+        <div ng-if="editPinCodeForm.password.$dirty" ng-messages="editPinCodeForm.password.$error" class="help-block">
+            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+            <span ng-message="uppercasecharacter"><span ng-bind="SUATEXTS['00008']"></span></span>
+            <span ng-message="lowercasecharacter"><span ng-bind="SUATEXTS['00009']"></span></span>
+            <span ng-message="digit"><span ng-bind="SUATEXTS['00010']"></span></span>
+            <span ng-message="specialcharacter"><span ng-bind="SUATEXTS['00011']"></span></span>
+            <span ng-message="identicalcharacters"><span ng-bind="SUATEXTS['00012']"></span></span>
+        </div>
+
+    </div>
+
+
+    <a href="#/">
+        <button ng-bind="SUAINTERNATIONALIZATION['00003']"></button>
+    </a>
+    <button type="submit" ng-disabled="editPinCodeForm.$invalid" ng-bind="SUAINTERNATIONALIZATION['00047']"></button>
+
+</form>

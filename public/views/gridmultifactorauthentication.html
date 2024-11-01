@@ -1,0 +1,22 @@
+<form ng-submit="submit()" novalidate role="form" name="gridMultifactorAuthenticationForm">
+    <div class="row">
+        <div class="col-md-3 text-center" ng-repeat="key in [0,1,2,3]" ng-init="inputName='gridValue_'+key">
+            <div class="form-group">
+                <label class="control-label" for="{{inputName}}"
+                       ng-bind="gridMultifactorAuthentication.names[key]"></label>
+                <input name="{{inputName}}" ng-pattern="/^[a-zA-Z0-9]+$/" ng-minlength="1" ng-maxlength="1"
+                       maxlength="1" ng-model="gridMultifactorAuthentication.values[key]" type="password"
+                       class="form-control text-center" id="{{inputName}}" required>
+            </div>
+        </div>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" name="status" ng-model="gridMultifactorAuthentication.remember"> <span
+                ng-bind="SUAINTERNATIONALIZATION['00043']"></span>
+        </label>
+    </div>
+    <button type="submit" ng-disabled="gridMultifactorAuthenticationForm.$invalid" ng-bind="SUAINTERNATIONALIZATION['00002']"></button>
+    <a href="#/recovery/2"><button ng-bind="SUAINTERNATIONALIZATION['00016']"></button></a>
+
+</form>

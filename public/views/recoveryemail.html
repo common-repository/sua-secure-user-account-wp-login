@@ -1,0 +1,36 @@
+<form novalidate role="form" name="recoveryEmailForm" ng-submit="submit()">
+    <div class="form-group has-feedback"
+         ng-class="{'has-success':recoveryEmailForm.email.$valid && recoveryEmailForm.email.$dirty,'has-error':recoveryEmailForm.email.$invalid && recoveryEmailForm.email.$dirty}">
+
+        <label class="control-label" for="email"><span ng-bind="recoveryEmail.maskedEmail"></span>
+        </label>
+        <input ng-change="recoveryEmailForm.email.$dirty=true;" ng-disabled="recoveryEmail.usePrimary" name="email"
+               ng-pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" ng-minlength="3" ng-maxlength="254"
+               ng-model="recoveryEmail.email" type="email" class="form-control" id="email" required>
+
+        <span ng-show="recoveryEmailForm.email.$valid && recoveryEmailForm.email.$dirty"
+              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="recoveryEmailForm.email.$invalid && recoveryEmailForm.email.$dirty"
+              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+
+        <div ng-if="recoveryEmailForm.email.$dirty" ng-messages="recoveryEmailForm.email.$error" class="help-block">
+            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+            <span ng-message="pattern"><span ng-bind="SUATEXTS['00007']"></span></span>
+            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+        </div>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" name="status" ng-model="recoveryEmail.usePrimary"
+                   ng-click="recoveryEmail.email='';recoveryEmailForm.email.$dirty=false;"> <span
+                ng-bind="SUAINTERNATIONALIZATION['00048']"></span>
+        </label>
+    </div>
+
+
+    <button type="submit" ng-disabled="recoveryEmailForm.$invalid && !recoveryEmail.usePrimary"
+            ng-bind="SUAINTERNATIONALIZATION['00057']"></button>
+
+</form>

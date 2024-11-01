@@ -1,0 +1,25 @@
+<form ng-submit="submit()" novalidate role="form" name="ipVerificationForm">
+    <div class="form-group has-feedback"
+         ng-class="{'has-success':ipVerificationForm.passCode.$valid && ipVerificationForm.passCode.$dirty,'has-error':ipVerificationForm.passCode.$invalid && ipVerificationForm.passCode.$dirty}">
+
+        <label class="control-label" for="passCode" ng-bind="SUAINTERNATIONALIZATION['00052']"></label>
+        <input name="passCode" ng-pattern="/^[0-9]+$/" ng-minlength="5" ng-maxlength="6" maxlength="6"
+               ng-model="ipVerification.passCode" type="text" class="form-control" id="passCode" required>
+
+        <span ng-show="ipVerificationForm.passCode.$valid && ipVerificationForm.passCode.$dirty"
+              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="ipVerificationForm.passCode.$invalid && ipVerificationForm.passCode.$dirty"
+              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+        <div ng-if="ipVerificationForm.passCode.$dirty" ng-messages="ipVerificationForm.passCode.$error"
+             class="help-block">
+            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+            <span ng-message="pattern"><span ng-bind="SUATEXTS['00050']"></span></span>
+            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+        </div>
+    </div>
+    <button type="submit" ng-disabled="ipVerificationForm.$invalid" ng-bind="SUAINTERNATIONALIZATION['00002']"></button>
+    <a href="#/recovery/3"><button ng-bind="SUAINTERNATIONALIZATION['00053']"></button></a>
+
+</form>

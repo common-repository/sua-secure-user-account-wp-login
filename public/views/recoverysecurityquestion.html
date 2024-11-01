@@ -1,0 +1,28 @@
+<form ng-submit="submit()" novalidate role="form" name="recoverySecurityQuestionForm">
+    <div class="form-group has-feedback"
+         ng-class="{'has-success':recoverySecurityQuestionForm.answer.$valid && recoverySecurityQuestionForm.answer.$dirty,'has-error':recoverySecurityQuestionForm.answer.$invalid && recoverySecurityQuestionForm.answer.$dirty}">
+
+        <label class="control-label" for="answer"><span ng-bind="recoverySecurityQuestion.question"></span>
+        </label>
+
+        <input ng-pattern="/^[a-z0-9 ]+$/" ng-minlength="10" ng-maxlength="250" class="form-control" type="password"
+               ng-model="recoverySecurityQuestion.answer" name="answer" id="answer" required>
+
+        <span ng-show="recoverySecurityQuestionForm.answer.$valid && recoverySecurityQuestionForm.answer.$dirty"
+              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+
+        <span ng-show="recoverySecurityQuestionForm.answer.$invalid && recoverySecurityQuestionForm.answer.$dirty"
+              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+        <div ng-if="recoverySecurityQuestionForm.answer.$dirty" ng-messages="recoverySecurityQuestionForm.answer.$error"
+             class="help-block">
+            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+        </div>
+    </div>
+
+    <button type="submit" ng-disabled="recoverySecurityQuestionForm.$invalid"
+            ng-bind="SUAINTERNATIONALIZATION['00047']"></button>
+
+</form>

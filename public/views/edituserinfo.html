@@ -1,0 +1,121 @@
+<form ng-submit="submit()" novalidate role="form" name="editUserInfoForm">
+    <div class="form-group has-feedback"
+         ng-class="{'has-success':editUserInfoForm.username.$valid && editUserInfoForm.username.$dirty,'has-error':editUserInfoForm.username.$invalid && editUserInfoForm.username.$dirty}">
+
+        <label class="control-label" for="username" ng-bind="SUAINTERNATIONALIZATION['00050']"></label>
+        <input name="username" ng-pattern="/^[a-zA-Z0-9-_]+$/" ng-minlength="6" ng-maxlength="30"
+               ng-model="editUserInfo.username" type="text" class="form-control" id="username" required
+               ng-readonly="!editUserInfo.changeUsername">
+
+        <span ng-show="editUserInfoForm.username.$valid && editUserInfoForm.username.$dirty"
+              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="editUserInfoForm.username.$invalid && editUserInfoForm.username.$dirty"
+              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+        <div ng-if="editUserInfoForm.username.$dirty" ng-messages="editUserInfoForm.username.$error" class="help-block">
+            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+            <span ng-message="pattern"><span ng-bind="SUATEXTS['00002']"></span></span>
+            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+        </div>
+
+    </div>
+
+    <div class="form-group has-feedback"
+         ng-class="{'has-success':editUserInfoForm.firstName.$valid && editUserInfoForm.firstName.$dirty,'has-error':editUserInfoForm.firstName.$invalid && editUserInfoForm.firstName.$dirty}">
+
+        <label class="control-label" for="firstName" ng-bind="SUAINTERNATIONALIZATION['00025']"></label>
+        <input name="firstName" ng-pattern="/^[a-zA-Z ]+$/" ng-minlength="3" ng-maxlength="35"
+               ng-model="editUserInfo.firstName" type="text" class="form-control" id="firstName">
+
+        <span ng-show="editUserInfoForm.firstName.$valid && editUserInfoForm.firstName.$dirty"
+              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="editUserInfoForm.firstName.$invalid && editUserInfoForm.firstName.$dirty"
+              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+
+        <div ng-if="editUserInfoForm.firstName.$dirty" ng-messages="editUserInfoForm.firstName.$error"
+             class="help-block">
+            <span ng-message="pattern"><span ng-bind="SUATEXTS['00005']"></span></span>
+            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+        </div>
+
+    </div>
+
+    <div class="form-group has-feedback"
+         ng-class="{'has-success':editUserInfoForm.lastName.$valid && editUserInfoForm.lastName.$dirty,'has-error':editUserInfoForm.lastName.$invalid && editUserInfoForm.lastName.$dirty}">
+
+        <label class="control-label" for="lastName" ng-bind="SUAINTERNATIONALIZATION['00028']"></label>
+        <input name="lastName" ng-pattern="/^[a-zA-Z ]+$/" ng-minlength="3" ng-maxlength="35"
+               ng-model="editUserInfo.lastName" type="text" class="form-control" id="lastName">
+
+        <span ng-show="editUserInfoForm.lastName.$valid && editUserInfoForm.lastName.$dirty"
+              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="editUserInfoForm.lastName.$invalid && editUserInfoForm.lastName.$dirty"
+              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+
+        <div ng-if="editUserInfoForm.lastName.$dirty" ng-messages="editUserInfoForm.lastName.$error" class="help-block">
+            <span ng-message="pattern"><span ng-bind="SUATEXTS['00006']"></span></span>
+            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+        </div>
+
+    </div>
+
+    <div class="form-group has-feedback"
+         ng-class="{'has-success':editUserInfoForm.email.$valid && editUserInfoForm.email.$dirty,'has-error':editUserInfoForm.email.$invalid && editUserInfoForm.email.$dirty}">
+
+        <label class="control-label" for="email" ng-bind="SUAINTERNATIONALIZATION['00021']"></label>
+        <input name="email" ng-pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" ng-minlength="3" ng-maxlength="254"
+               ng-model="editUserInfo.email" type="email" class="form-control" id="email" required>
+
+        <span ng-show="editUserInfoForm.email.$valid && editUserInfoForm.email.$dirty"
+              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="editUserInfoForm.email.$invalid && editUserInfoForm.email.$dirty"
+              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+
+        <div ng-if="editUserInfoForm.email.$dirty" ng-messages="editUserInfoForm.email.$error" class="help-block">
+            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+            <span ng-message="pattern"><span ng-bind="SUATEXTS['00007']"></span></span>
+            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+        </div>
+    </div>
+
+    <div ng-if="editUserInfo.pendingEmail" class="form-group">
+        <label class="control-label" for="pendingEmail"><span ng-bind="SUAINTERNATIONALIZATION['00034']"></span>&nbsp;
+            <small><a ng-click="cancelPendingEmail()" href="" ng-bind="SUAINTERNATIONALIZATION['00005']"></a></small>
+        </label>
+        <input name="pendingEmail" ng-model="editUserInfo.pendingEmail" type="email" class="form-control"
+               id="pendingEmail" disabled>
+    </div>
+
+    <div ng-if="editUserInfo.pinCodeEnabled" class="form-group has-feedback"
+         ng-class="{'has-success':editUserInfoForm.pinCode.$valid && editUserInfoForm.pinCode.$dirty,'has-error':editUserInfoForm.pinCode.$invalid && editUserInfoForm.pinCode.$dirty}">
+
+        <label class="control-label" for="pinCode"><span ng-bind="SUAINTERNATIONALIZATION['00037']"></span>
+        </label>
+        <input name="pinCode" ng-pattern="/^[0-9]{4}$/" ng-minlength="4" ng-maxlength="4" maxlength="4"
+               ng-model="editUserInfo.pinCode" type="password" class="form-control" id="pinCode" required>
+
+        <span ng-show="editUserInfoForm.pinCode.$valid && editUserInfoForm.pinCode.$dirty"
+              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="editUserInfoForm.pinCode.$invalid && editUserInfoForm.pinCode.$dirty"
+              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+        <div ng-if="editUserInfoForm.pinCode.$dirty" ng-messages="editUserInfoForm.pinCode.$error" class="help-block">
+            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+            <span ng-message="pattern"><span ng-bind="SUATEXTS['00079']"></span></span>
+            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+        </div>
+    </div>
+
+    <a href="#/">
+        <button ng-bind="SUAINTERNATIONALIZATION['00003']"></button>
+    </a>
+    <button type="submit" ng-disabled="editUserInfoForm.$invalid" ng-bind="SUAINTERNATIONALIZATION['00047']"></button>
+</form>

@@ -1,0 +1,76 @@
+<form ng-submit="submit()" novalidate role="form" name="signUpForm">
+    <div class="form-group has-feedback"
+         ng-class="{'has-success':signUpForm.username.$valid && signUpForm.username.$dirty,'has-error':signUpForm.username.$invalid && signUpForm.username.$dirty}">
+
+        <label class="control-label" for="username" ng-bind="SUAINTERNATIONALIZATION['00050']"></label>
+        <input name="username" ng-pattern="/^[a-zA-Z0-9-_]+$/" ng-minlength="6" ng-maxlength="30"
+               ng-model="signUp.username" type="text" class="form-control" id="username" required>
+
+        <span ng-show="signUpForm.username.$valid && signUpForm.username.$dirty"
+              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="signUpForm.username.$invalid && signUpForm.username.$dirty"
+              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+        <div ng-if="signUpForm.username.$dirty" ng-messages="signUpForm.username.$error" class="help-block">
+            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+            <span ng-message="pattern"><span ng-bind="SUATEXTS['00002']"></span></span>
+            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+        </div>
+
+    </div>
+    <div class="form-group has-feedback"
+         ng-class="{'has-success':signUpForm.email.$valid && signUpForm.email.$dirty,'has-error':signUpForm.email.$invalid && signUpForm.email.$dirty}">
+
+        <label class="control-label" for="email" ng-bind="SUAINTERNATIONALIZATION['00021']"></label>
+        <input name="email" ng-pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" ng-minlength="3" ng-maxlength="254"
+               ng-model="signUp.email" type="email" class="form-control" id="email" required>
+
+        <span ng-show="signUpForm.email.$valid && signUpForm.email.$dirty"
+              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="signUpForm.email.$invalid && signUpForm.email.$dirty"
+              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+
+        <div ng-if="signUpForm.email.$dirty" ng-messages="signUpForm.email.$error" class="help-block">
+            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+            <span ng-message="pattern"><span ng-bind="SUATEXTS['00007']"></span></span>
+            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+        </div>
+
+    </div>
+
+    <div class="form-group has-feedback"
+         ng-class="{'has-success':signUpForm.password.$valid && signUpForm.password.$dirty,'has-error':signUpForm.password.$invalid && signUpForm.password.$dirty}">
+
+        <label class="control-label" for="password" ng-bind="SUAINTERNATIONALIZATION['00033']"></label>
+        <input name="password" digit uppercase-character special-character lowercase-character identical-characters
+               ng-minlength="10" ng-maxlength="128" ng-model="signUp.password" type="password" class="form-control"
+               id="password" required>
+
+        <span ng-show="signUpForm.password.$valid && signUpForm.password.$dirty"
+              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="signUpForm.password.$invalid && signUpForm.password.$dirty"
+              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+
+        <div ng-if="signUpForm.password.$dirty" ng-messages="signUpForm.password.$error" class="help-block">
+            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+            <span ng-message="uppercasecharacter"><span ng-bind="SUATEXTS['00008']"></span></span>
+            <span ng-message="lowercasecharacter"><span ng-bind="SUATEXTS['00009']"></span></span>
+            <span ng-message="digit"><span ng-bind="SUATEXTS['00010']"></span></span>
+            <span ng-message="specialcharacter"><span ng-bind="SUATEXTS['00011']"></span></span>
+            <span ng-message="identicalcharacters"><span ng-bind="SUATEXTS['00012']"></span></span>
+        </div>
+    </div>
+    <div class="form-group" ng-if="signUp.enableRecaptcha">
+        <recaptcha></recaptcha>
+    </div>
+    <button type="submit" ng-disabled="signUpForm.$invalid" ng-bind="SUAINTERNATIONALIZATION['00054']"></button>
+    <a href="#/signIn">
+        <button ng-bind="SUAINTERNATIONALIZATION['00055']"></button>
+    </a>
+</form>

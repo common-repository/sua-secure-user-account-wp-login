@@ -1,0 +1,143 @@
+<form ng-submit="submit()" novalidate role="form" name="editSecurityQuestionsForm">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" ng-class="{'active':editSecurityQuestions.canned}">
+            <a ng-click="editSecurityQuestions.canned=true" href="#canned" onClick="return false;"
+               aria-controls="canned" role="tab" data-toggle="tab" ng-bind="SUAINTERNATIONALIZATION['00006']"></a>
+        </li>
+        <li role="presentation" ng-class="{'active':!editSecurityQuestions.canned}">
+            <a ng-click="editSecurityQuestions.canned=false" href="#user-created" onClick="return false;"
+               aria-controls="user-created" role="tab" data-toggle="tab" ng-bind="SUAINTERNATIONALIZATION['00049']"></a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane" ng-class="{'active':editSecurityQuestions.canned}" id="canned"
+             ng-if="editSecurityQuestions.canned">
+            <div class="row" ng-repeat="key in editSecurityQuestions.numberOfQuestions"
+                 ng-init="inputName='securityQuestion_'+key">
+                <div class="col-md-12">
+
+                    <div class="form-group">
+                        <select class="form-control" ng-model="editSecurityQuestions.questions[key]"
+                                ng-change="selectedSecurityQuestion()" ng-init="selectedSecurityQuestion()">
+                            <option value="" ng-bind="SUAINTERNATIONALIZATION['00008']"></option>
+                            <option ng-repeat="question in editSecurityQuestions.cannedQuestions track by $index"
+                                    value="{{question.code}}" ng-disabled="question.selected" ng-bind="question.title"
+                                    ng-selected="editSecurityQuestions.questions[key]===question.code"></option>
+                        </select>
+                    </div>
+
+                    <div class="form-group has-feedback"
+                         ng-class="{'has-success':editSecurityQuestionsForm[inputName].$valid && editSecurityQuestionsForm[inputName].$dirty,'has-error':editSecurityQuestionsForm[inputName].$invalid && editSecurityQuestionsForm[inputName].$dirty}">
+
+                        <input ng-pattern="/^[a-z0-9 ]+$/" ng-disabled="!editSecurityQuestions.questions[key]"
+                               ng-minlength="10" ng-maxlength="250" class="form-control" type="text"
+                               ng-model="editSecurityQuestions.answers[key]" name="{{inputName}}" id="{{inputName}}"
+                               required>
+
+                        <span ng-show="editSecurityQuestionsForm[inputName].$valid && editSecurityQuestionsForm[inputName].$dirty"
+                              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+
+                        <span ng-show="editSecurityQuestionsForm[inputName].$invalid && editSecurityQuestionsForm[inputName].$dirty"
+                              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+                        <div ng-if="editSecurityQuestionsForm[inputName].$dirty"
+                             ng-messages="editSecurityQuestionsForm[inputName].$error" class="help-block">
+                            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+                            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+                            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+                            <span ng-message="pattern"><span ng-bind="SUATEXTS['00039']"></span></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" ng-class="{'active':!editSecurityQuestions.canned}" id="user-created"
+             ng-if="!editSecurityQuestions.canned">
+            <div ng-if="editSecurityQuestions.personal" class="row">
+                <div class="col-md-12">
+
+                    <div class="form-group has-feedback"
+                         ng-class="{'has-success':editSecurityQuestionsForm.personnalQuestion.$valid && editSecurityQuestionsForm.personnalQuestion.$dirty,'has-error':editSecurityQuestionsForm.personnalQuestion.$invalid && editSecurityQuestionsForm.personnalQuestion.$dirty}">
+                        <label class="control-label" for="personnalQuestion"
+                               ng-bind="SUAINTERNATIONALIZATION['00039']"></label>
+
+                        <input ng-pattern="/^[a-z0-9 ]+$/" ng-minlength="10" ng-maxlength="250" class="form-control"
+                               type="text" ng-model="editSecurityQuestions.personal.question" name="personnalQuestion"
+                               required id="personalQuestion">
+
+                        <span ng-show="editSecurityQuestionsForm.personnalQuestion.$valid && editSecurityQuestionsForm.personnalQuestion.$dirty"
+                              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+
+                        <span ng-show="editSecurityQuestionsForm.personnalQuestion.$invalid && editSecurityQuestionsForm.personnalQuestion.$dirty"
+                              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+                        <div ng-if="editSecurityQuestionsForm.personnalQuestion.$dirty"
+                             ng-messages="editSecurityQuestionsForm.personnalQuestion.$error" class="help-block">
+                            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+                            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+                            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+                            <span ng-message="pattern"><span ng-bind="SUATEXTS['00072']"></span></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group has-feedback"
+                         ng-class="{'has-success':editSecurityQuestionsForm.personnalAnswer.$valid && editSecurityQuestionsForm.personnalAnswer.$dirty,'has-error':editSecurityQuestionsForm.personnalAnswer.$invalid && editSecurityQuestionsForm.personnalAnswer.$dirty}">
+
+                        <label class="control-label" for="PersonnalAnswer"
+                               ng-bind="SUAINTERNATIONALIZATION['00001']"></label>
+
+                        <input ng-pattern="/^[a-z0-9 ]+$/" ng-minlength="10" ng-maxlength="250" class="form-control"
+                               type="password" ng-model="editSecurityQuestions.personal.answer" name="personnalAnswer"
+                               id="PersonnalAnswer" ng-required="editSecurityQuestions.personal.required"
+                               id="personalAnswer">
+
+                        <span ng-show="editSecurityQuestionsForm.personnalAnswer.$valid && editSecurityQuestionsForm.personnalAnswer.$dirty"
+                              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+
+                        <span ng-show="editSecurityQuestionsForm.personnalAnswer.$invalid && editSecurityQuestionsForm.personnalAnswer.$dirty"
+                              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+                        <div ng-if="editSecurityQuestionsForm.personnalAnswer.$dirty"
+                             ng-messages="editSecurityQuestionsForm.personnalAnswer.$error" class="help-block">
+                            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+                            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+                            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+                            <span ng-message="pattern"><span ng-bind="SUATEXTS['00039']"></span></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-if="editSecurityQuestions.pinCodeEnabled" class="form-group has-feedback"
+         ng-class="{'has-success':editSecurityQuestionsForm.pinCode.$valid && editSecurityQuestionsForm.pinCode.$dirty,'has-error':editSecurityQuestionsForm.pinCode.$invalid && editSecurityQuestionsForm.pinCode.$dirty}">
+
+        <label class="control-label" for="pinCode"><span ng-bind="SUAINTERNATIONALIZATION['00037']"></span>
+        </label>
+        <input name="pinCode" ng-pattern="/^[0-9]{4}$/" ng-minlength="4" ng-maxlength="4" maxlength="4"
+               ng-model="editSecurityQuestions.pinCode" type="password" class="form-control" id="pinCode" required>
+
+        <span ng-show="editSecurityQuestionsForm.pinCode.$valid && editSecurityQuestionsForm.pinCode.$dirty"
+              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="editSecurityQuestionsForm.pinCode.$invalid && editSecurityQuestionsForm.pinCode.$dirty"
+              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+        <div ng-if="editSecurityQuestionsForm.pinCode.$dirty" ng-messages="editSecurityQuestionsForm.pinCode.$error"
+             class="help-block">
+            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+            <span ng-message="pattern"><span ng-bind="SUATEXTS['00079']"></span></span>
+            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+        </div>
+    </div>
+
+    <a href="#/">
+        <button ng-bind="SUAINTERNATIONALIZATION['00003']"></button>
+    </a>
+    <button type="submit" ng-disabled="editSecurityQuestionsForm.$invalid"
+            ng-bind="SUAINTERNATIONALIZATION['00047']"></button>
+</form>

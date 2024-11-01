@@ -1,0 +1,48 @@
+.wp-sua {
+    overflow: hidden;
+    position: relative;
+}
+
+.wp-sua label {
+    word-break: break-all;
+}
+
+.wp-sua .tab-content {
+    margin-top: 10px
+}
+
+.wp-sua .route-animation.ng-enter {
+    transition: .3s linear all;
+    opacity: 0
+}
+
+.wp-sua .route-animation.ng-enter.ng-enter-active {
+    opacity: 1
+}
+
+.wp-sua .growl-container {
+    z-index: 9999999999999999;
+}
+
+.wp-sua button[disabled], .wp-sua button[disabled]:hover {
+    background-color: #C0C0C0;
+}
+
+.wp-sua #sua-tabs {
+    margin-left: 0px;
+}
+
+.wp-sua .alignright {
+    margin-right: 0px !important;
+    float: right;
+}
+
+.wp-sua .alignleft {
+    margin-left: 0px !important;
+    float: left;
+}
+
+.wp-sua a[href="#/"] {
+    text-decoration: none;
+    border: none;
+}

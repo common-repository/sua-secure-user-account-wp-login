@@ -1,0 +1,61 @@
+<form ng-submit="submit()" novalidate role="form" name="emailNotificationsForm">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th width="80%"></th>
+                <th width="10%" ng-bind="SUAINTERNATIONALIZATION['00038'].charAt(0)"></th>
+                <th width="10%" ng-bind="SUAINTERNATIONALIZATION['00042'].charAt(0)"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="notification in SUAINTERNATIONALIZATION['00051']">
+                <td ng-bind="notification.title"></td>
+                <td>
+                    <label>
+                        <input ng-checked="selectNotification(notification.code)"
+                               ng-init="selectInit(notification.code,$index)"
+                               ng-model="emailNotifications.primaryNotifications[$index]"
+                               ng-true-value="{{notification.code}}" type="checkbox">
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <input ng-checked="selectNotification(notification.code,true)"
+                               ng-init="selectInit(notification.code,$index,true)"
+                               ng-disabled="!emailNotifications.recoveryEnabled"
+                               ng-model="emailNotifications.recoveryNotifications[$index]"
+                               ng-true-value="{{notification.code}}" type="checkbox">
+                    </label>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div ng-if="emailNotifications.pinCodeEnabled" class="form-group has-feedback"
+         ng-class="{'has-success':emailNotificationsForm.pinCode.$valid && emailNotificationsForm.pinCode.$dirty,'has-error':emailNotificationsForm.pinCode.$invalid && emailNotificationsForm.pinCode.$dirty}">
+
+        <label class="control-label" for="pinCode"><span ng-bind="SUAINTERNATIONALIZATION['00037']"></span>
+        </label>
+        <input name="pinCode" ng-pattern="/^[0-9]{4}$/" ng-minlength="4" ng-maxlength="4" maxlength="4"
+               ng-model="emailNotifications.pinCode" type="password" class="form-control" id="pinCode" required>
+
+        <span ng-show="emailNotificationsForm.pinCode.$valid && emailNotificationsForm.pinCode.$dirty"
+              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="emailNotificationsForm.pinCode.$invalid && emailNotificationsForm.pinCode.$dirty"
+              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+        <div ng-if="emailNotificationsForm.pinCode.$dirty" ng-messages="emailNotificationsForm.pinCode.$error"
+             class="help-block">
+            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+            <span ng-message="pattern"><span ng-bind="SUATEXTS['00079']"></span></span>
+            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+        </div>
+    </div>
+    <a href="#/">
+        <button ng-bind="SUAINTERNATIONALIZATION['00003']"></button>
+    </a>
+    <button type="submit" ng-disabled="emailNotificationsForm.$invalid"
+            ng-bind="SUAINTERNATIONALIZATION['00047']"></button>
+</form>

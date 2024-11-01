@@ -1,0 +1,119 @@
+<ul id="sua-tabs" class="nav nav-tabs" data-tabs="tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#personal" onClick="return false;" aria-controls="personal"
+                                              role="tab" data-toggle="tab"><span
+            ng-bind="SUAINTERNATIONALIZATION['00036']"></span></a>
+    </li>
+    <li role="presentation"><a href="#security" onClick="return false;" aria-controls="security" role="tab"
+                               data-toggle="tab"><span ng-bind="SUAINTERNATIONALIZATION['00045']"></span></a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="personal">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <td><strong ng-bind="SUAINTERNATIONALIZATION['00050']"></strong>
+                    </td>
+                    <td ng-bind="home.username"></td>
+                </tr>
+                <tr>
+                    <td><strong ng-bind="SUAINTERNATIONALIZATION['00025']"></strong>
+                    </td>
+                    <td ng-bind="home.firstName"></td>
+                </tr>
+                <tr>
+                    <td><strong ng-bind="SUAINTERNATIONALIZATION['00028']"></strong>
+                    </td>
+                    <td ng-bind="home.lastName"></td>
+                </tr>
+                <tr>
+                    <td><strong ng-bind="SUAINTERNATIONALIZATION['00021']"></strong>
+                    </td>
+                    <td ng-bind="home.email"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <small><a href="#/editUserInfo"><span ng-bind="SUAINTERNATIONALIZATION['00020']"></span></a>
+                        </small>
+                    </td>
+                    <td>
+                        <small><a ng-click="logOut()" href="" ng-bind="SUAINTERNATIONALIZATION['00029']"></a></small>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="security">
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <td><strong ng-bind="SUAINTERNATIONALIZATION['00033']"></strong>
+                    </td>
+                    <td>
+                        <small><a href="#/editPassword" ng-bind="SUAINTERNATIONALIZATION['00007']"></a></small>
+                    </td>
+                </tr>
+                <tr ng-if="home.pinCodeEnabled">
+                    <td><strong ng-bind="SUAINTERNATIONALIZATION['00037']"></strong>
+                    </td>
+                    <td>
+                        <small><a href="#/editPinCode"><span ng-bind="SUAINTERNATIONALIZATION['00020']"></span></a>
+                        </small>
+                    </td>
+                </tr>
+                <tr ng-if="home.editRecoveryEmailEnabled">
+                    <td><strong ng-bind="SUAINTERNATIONALIZATION['00041']"></strong>
+                    </td>
+                    <td><span ng-bind="home.recoveryEmail"></span><span ng-show="home.recoveryEmail">&nbsp;</span>
+                        <small><a href="#/editRecoveryEmail"><span
+                                ng-bind="SUAINTERNATIONALIZATION['00020']"></span></a></small>
+                    </td>
+                </tr>
+                <tr ng-if="home.editSecurityQuestionsEnabled">
+                    <td><strong ng-bind="SUAINTERNATIONALIZATION['00044']"></strong>
+                    </td>
+                    <td>
+                        <small><a href="#/editSecurityQuestions"><span
+                                ng-bind="SUAINTERNATIONALIZATION['00020']"></span></a></small>
+                    </td>
+                </tr>
+                <tr ng-if="home.multifactorAuthenticationEnabled">
+                    <td><strong ng-bind="SUAINTERNATIONALIZATION['00030']"></strong>
+                    </td>
+                    <td><span ng-bind="home.multifactorAuthentication"></span><span
+                            ng-show="home.multifactorAuthentication">&nbsp;</span>
+                        <small><a href="#/editGridMultifactorAuthentication"><span
+                                ng-bind="SUAINTERNATIONALIZATION['00020']"></span></a></small>
+                    </td>
+                </tr>
+                <tr ng-if="home.ipVerificationEnabled">
+                    <td><strong ng-bind="SUAINTERNATIONALIZATION['00026']"></strong>
+                    </td>
+                    <td><span ng-bind="home.ipVerification"></span><span ng-show="home.ipVerification">&nbsp;</span>
+                        <small><a href="#/editIpVerification"><span
+                                ng-bind="SUAINTERNATIONALIZATION['00020']"></span></a></small>
+                    </td>
+                </tr>
+                <tr ng-if="home.accountHistoryEnabled">
+                    <td><strong ng-bind="SUAINTERNATIONALIZATION['00000']"></strong>
+                    </td>
+                    <td>
+                        <small><a href="#/accountHistory" ng-bind="SUAINTERNATIONALIZATION['00046']"></a></small>
+                    </td>
+                </tr>
+                <tr ng-if="home.emailNotificationsEnabled">
+                    <td><strong ng-bind="SUAINTERNATIONALIZATION['00022']"></strong>
+                    </td>
+                    <td>
+                        <small><a href="#/emailNotifications" ng-bind="SUAINTERNATIONALIZATION['00020']"></a></small>
+                    </td>
+                </tr>
+                <tr ng-if="home.deleteAccountEnabled">
+                    <td>
+                        <small><a href="#/deleteAccount" ng-bind="SUAINTERNATIONALIZATION['00014']"></a></small>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

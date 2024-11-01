@@ -1,0 +1,37 @@
+<form novalidate role="form" name="editGridMultifactorAuthenticationForm">
+    <div class="checkbox">
+        <label>
+            <input ng-disabled="editGridMultifactorAuthentication.suspend  || editGridMultifactorAuthenticationForm.$invalid"
+                   ng-change="submit()" type="checkbox" name="status"
+                   ng-model="editGridMultifactorAuthentication.enabled"><span
+                ng-bind="SUAINTERNATIONALIZATION['00023']"></span>
+        </label>
+    </div>
+    <div ng-if="editGridMultifactorAuthentication.pinCodeEnabled" class="form-group has-feedback"
+         ng-class="{'has-success':editGridMultifactorAuthenticationForm.pinCode.$valid && editGridMultifactorAuthenticationForm.pinCode.$dirty,'has-error':editGridMultifactorAuthenticationForm.pinCode.$invalid && editGridMultifactorAuthenticationForm.pinCode.$dirty}">
+
+        <label class="control-label" for="pinCode"><span ng-bind="SUAINTERNATIONALIZATION['00037']"></span>
+        </label>
+        <input name="pinCode" ng-pattern="/^[0-9]{4}$/" ng-minlength="4" ng-maxlength="4" maxlength="4"
+               ng-model="editGridMultifactorAuthentication.pinCode" type="password" class="form-control" id="pinCode"
+               required>
+
+        <span ng-show="editGridMultifactorAuthenticationForm.pinCode.$valid && editGridMultifactorAuthenticationForm.pinCode.$dirty"
+              class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+        <span ng-show="editGridMultifactorAuthenticationForm.pinCode.$invalid && editGridMultifactorAuthenticationForm.pinCode.$dirty"
+              class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+        <div ng-if="editGridMultifactorAuthenticationForm.pinCode.$dirty"
+             ng-messages="editGridMultifactorAuthenticationForm.pinCode.$error" class="help-block">
+            <span ng-message="required"><span ng-bind="SUATEXTS['00001']"></span></span>
+            <span ng-message="pattern"><span ng-bind="SUATEXTS['00079']"></span></span>
+            <span ng-message="minlength"><span ng-bind="SUATEXTS['00003']"></span></span>
+            <span ng-message="maxlength"><span ng-bind="SUATEXTS['00004']"></span></span>
+        </div>
+    </div>
+    <a href="#/">
+        <button ng-bind="SUAINTERNATIONALIZATION['00003']"></button>
+    </a>
+    <button ng-click="downloadGrid()" ng-disabled="editGridMultifactorAuthenticationForm.$invalid"
+            ng-bind="SUAINTERNATIONALIZATION['00018']"></button>
+</form>

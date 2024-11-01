@@ -1,0 +1,32 @@
+<form novalidate role="form" name="accountHistoryForm">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th ng-bind="SUAINTERNATIONALIZATION['00004']" width="65%"></th>
+                <th ng-bind="SUAINTERNATIONALIZATION['00011']" width="15%"></th>
+                <th ng-bind="SUAINTERNATIONALIZATION['00027']" width="10%"></th>
+                <th ng-bind="SUAINTERNATIONALIZATION['00009']" width="10%"></th>
+                <th ng-bind="SUAINTERNATIONALIZATION['00013']" width="10%"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="activity in accountHistory.activities track by $index">
+                <td ng-bind="activity.browser"></td>
+                <td ng-bind="activity.country"></td>
+                <td ng-bind="activity.address"></td>
+                <td ng-bind="activity.city"></td>
+                <td ng-bind="activity.created"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a href="#/">
+        <button ng-bind="SUAINTERNATIONALIZATION['00003']"></button>
+    </a>
+    <button ng-click="csvActivities()" ng-disabled="!accountHistory.activities"
+            ng-bind="SUAINTERNATIONALIZATION['00019']"></button>
+
+
+</form>
